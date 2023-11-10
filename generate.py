@@ -40,7 +40,8 @@ if __name__ == '__main__':
         shutil.rmtree('docs')
     if not os.path.isdir('docs'):
         os.mkdir('docs')
-
+    if os.path.exists('CNAME'):
+        shutil.copy('CNAME', 'docs/CNAME')
     topics = list(
         filter(lambda x: os.path.isdir(x) and (x not in EXCLUDE_DIRS),
                os.listdir('.')))  # list topics
