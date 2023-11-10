@@ -44,11 +44,13 @@ if __name__ == '__main__':
     topics = list(
         filter(lambda x: os.path.isdir(x) and (x not in EXCLUDE_DIRS),
                os.listdir('.')))  # list topics
-
+    if os.path.exists('CNAME'):
+        shutil.copy('CNAME', 'docs/CNAME')
     for topic in topics:
+       
         topic_path = os.path.join('.', topic)
         target_path = os.path.join('docs', topic)
-
+        
         if os.path.exists(target_path):
             shutil.rmtree(target_path)
         shutil.copytree(topic_path, target_path)
